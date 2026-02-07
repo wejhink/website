@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title="Blog — Jhink" description="Thoughts on AI-native software, product development, and the future of SaaS.">
+  <section class="py-20 md:py-28">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="max-w-3xl mb-12">
+        <p class="text-sm font-medium text-accent-dark uppercase tracking-wider mb-3">Blog</p>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
+          Ideas & Updates
+        </h1>
+        <p class="mt-4 text-lg text-text-secondary leading-relaxed">
+          Thoughts on building AI-native software, lessons from the field, and what we're working on.
+        </p>
+      </div>
+
+      {posts.length === 0 ? (
+        <p class="text-text-secondary">No posts yet. Check back soon.</p>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {posts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              slug={post.id}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

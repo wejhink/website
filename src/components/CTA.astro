@@ -1,0 +1,36 @@
+---
+interface Props {
+  heading?: string;
+  description?: string;
+  buttonText?: string;
+  buttonHref?: string;
+  external?: boolean;
+}
+
+const {
+  heading = 'Stay in the loop',
+  description = 'Follow along as we build AI-native products that make a real difference.',
+  buttonText = 'Get in touch',
+  buttonHref = 'mailto:hello@jhink.com',
+  external = false,
+} = Astro.props;
+---
+
+<section class="py-20 md:py-28 bg-dark text-dark-text">
+  <div class="max-w-[1200px] mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold tracking-tight">{heading}</h2>
+    <p class="mt-4 text-lg text-dark-text/70 max-w-xl mx-auto leading-relaxed">
+      {description}
+    </p>
+    <div class="mt-8">
+      <a
+        href={buttonHref}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noopener noreferrer' : undefined}
+        class="inline-flex items-center px-6 py-3 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-dark transition-colors duration-200"
+      >
+        {buttonText}
+      </a>
+    </div>
+  </div>
+</section>

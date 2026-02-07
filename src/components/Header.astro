@@ -1,0 +1,97 @@
+---
+import Logo from './Logo.astro';
+
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/blog', label: 'Blog' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-background/90 backdrop-blur-sm border-b border-border">
+  <nav class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center">
+      <Logo height={28} />
+    </a>
+
+    {/* Desktop nav */}
+    <ul class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm font-medium transition-colors duration-200',
+              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                ? 'text-accent-dark'
+                : 'text-text-secondary hover:text-text-primary',
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    {/* Mobile hamburger */}
+    <button
+      id="menu-toggle"
+      class="md:hidden flex flex-col justify-center gap-1.5 w-8 h-8"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <span class="hamburger-line block w-5 h-px bg-text-primary transition-all duration-300 origin-center"></span>
+      <span class="hamburger-line block w-5 h-px bg-text-primary transition-all duration-300"></span>
+      <span class="hamburger-line block w-5 h-px bg-text-primary transition-all duration-300 origin-center"></span>
+    </button>
+  </nav>
+
+  {/* Mobile menu */}
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-border bg-background"
+  >
+    <ul class="px-6 py-4 space-y-3">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              'block text-sm font-medium py-1 transition-colors duration-200',
+              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                ? 'text-accent-dark'
+                : 'text-text-secondary hover:text-text-primary',
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const lines = toggle?.querySelectorAll('.hamburger-line');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+
+    if (lines && lines.length === 3) {
+      if (isOpen) {
+        (lines[0] as HTMLElement).style.transform = 'rotate(45deg) translate(2px, 2px)';
+        (lines[1] as HTMLElement).style.opacity = '0';
+        (lines[2] as HTMLElement).style.transform = 'rotate(-45deg) translate(2px, -2px)';
+      } else {
+        (lines[0] as HTMLElement).style.transform = '';
+        (lines[1] as HTMLElement).style.opacity = '';
+        (lines[2] as HTMLElement).style.transform = '';
+      }
+    }
+  });
+</script>
