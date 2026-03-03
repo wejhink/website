@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<BaseLayout title="Customer Support — Jhink" description="Get help with any Jhink product. Reach our support team via email.">
+  {/* Page Header */}
+  <section class="py-20 md:py-28">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-accent-dark uppercase tracking-wider mb-3">Support</p>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
+          Customer Support
+        </h1>
+        <p class="mt-6 text-lg text-text-secondary leading-relaxed">
+          Have a question or need help with a Jhink product? We're here for you.
+          Reach out and we'll get back to you as soon as we can.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* Contact Methods */}
+  <section class="py-20 md:py-28 bg-surface border-y border-border">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl">
+        <div class="bg-background rounded-xl border border-border p-8">
+          <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-accent-dark" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Email Us</h3>
+          <p class="text-sm text-text-secondary leading-relaxed mb-4">
+            For general inquiries, product support, or billing questions.
+          </p>
+          <a
+            href="mailto:hello@jhink.com"
+            class="text-sm font-medium text-accent-dark hover:underline"
+          >
+            hello@jhink.com
+          </a>
+        </div>
+
+        <div class="bg-background rounded-xl border border-border p-8">
+          <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-accent-dark" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Response Time</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            We typically respond within one business day. For urgent issues, please include "Urgent" in your subject line.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Need product-specific help?"
+    description="Visit your product's help center for guides, FAQs, and detailed documentation."
+    buttonText="Contact us"
+    buttonHref="mailto:hello@jhink.com"
+  />
+</BaseLayout>
